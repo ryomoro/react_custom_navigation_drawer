@@ -20,8 +20,8 @@ class CollapsingNavigationDrawerState extends State<CollapsingNavigationDrawer>
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 300));
+    _animationController =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
     widthAnimation = Tween<double>(begin: maxWidth, end: minWidth)
         .animate(_animationController);
   }
@@ -42,8 +42,15 @@ class CollapsingNavigationDrawerState extends State<CollapsingNavigationDrawer>
         color: drawerBackgroundColor,
         child: Column(
           children: <Widget>[
-            CollapsingListTile(title: 'Techie', icon: Icons.person, animationController: _animationController,),
-            Divider(color: Colors.grey, height: 40.0,),
+            CollapsingListTile(
+              title: 'Techie',
+              icon: Icons.person,
+              animationController: _animationController,
+            ),
+            Divider(
+              color: Colors.grey,
+              height: 40.0,
+            ),
             Expanded(
               child: ListView.separated(
                 separatorBuilder: (context, counter) {
@@ -51,15 +58,15 @@ class CollapsingNavigationDrawerState extends State<CollapsingNavigationDrawer>
                 },
                 itemBuilder: (context, counter) {
                   return CollapsingListTile(
-                      onTap: () {
-                        setState(() {
-                          currentSelectedIndex = counter;
-                        });
-                      },
-                      isSelected: currentSelectedIndex == counter,
-                      title: navigationItems[counter].title,
-                      icon: navigationItems[counter].icon,
-                      animationController: _animationController,
+                    onTap: () {
+                      setState(() {
+                        currentSelectedIndex = counter;
+                      });
+                    },
+                    isSelected: currentSelectedIndex == counter,
+                    title: navigationItems[counter].title,
+                    icon: navigationItems[counter].icon,
+                    animationController: _animationController,
                   );
                 },
                 itemCount: navigationItems.length,
